@@ -30,7 +30,6 @@ async def initialize_database():
             TaskModel,
             CompleteTaskModel
 
-
         ],
     )
 
