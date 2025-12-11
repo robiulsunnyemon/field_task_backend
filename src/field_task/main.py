@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from field_task.database.database import initialize_database, close_database
+from field_task.auth.routers.auth_routers import router as auth_router
+from field_task.auth.routers.user_routes import user_router
 
 @asynccontextmanager
 async def lifespan_context(_: FastAPI):
@@ -28,3 +30,7 @@ app.add_middleware(
 async def health():
     return {"message": "Api is working"}
 
+
+
+app.include_router(auth_router,prefix="/api/v1")
+app.include_router(user_router,prefix="/api/v1")
