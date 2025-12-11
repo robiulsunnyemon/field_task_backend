@@ -5,6 +5,7 @@ from field_task.database.database import initialize_database, close_database
 from field_task.auth.routers.auth_routers import router as auth_router
 from field_task.auth.routers.user_routes import user_router
 from field_task.task.routers.task_routes import router as task_router
+from field_task.complete_task.routers.complete_task_routes import router as complete_task_router
 
 @asynccontextmanager
 async def lifespan_context(_: FastAPI):
@@ -36,3 +37,4 @@ async def health():
 app.include_router(auth_router,prefix="/api/v1")
 app.include_router(user_router,prefix="/api/v1")
 app.include_router(task_router,prefix="/api/v1")
+app.include_router(complete_task_router,prefix="/api/v1")
