@@ -175,7 +175,7 @@ async def delete_complete_task(id: str):
 
 
 # DELETE all complete_tasks
-@router.delete("/all", status_code=status.HTTP_200_OK)
+@router.delete("/delete/all", status_code=status.HTTP_200_OK)
 async def delete_all_complete_tasks():
     """
     Delete all complete_tasks from the database.
