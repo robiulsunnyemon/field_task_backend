@@ -12,14 +12,14 @@ router = APIRouter(prefix="/tasks", tags=["tasks"])
 
 # GET all tasks
 @router.get("/", status_code=status.HTTP_200_OK)
-async def get_all_tasks():
+async def get_all_tasks(skip: int = 0, limit: int = 10):
     
     """
     Get all tasks with pagination
     """
     response=[]
 
-    tasks = await TaskModel.find_all().to_list()
+    tasks = await TaskModel.find_all().skip(skip).limit(limit).to_list()
 
     for task in tasks:
         task_dict = {}

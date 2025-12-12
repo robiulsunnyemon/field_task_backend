@@ -17,6 +17,13 @@ client: Optional[AsyncIOMotorClient] = None
 
 
 async def initialize_database():
+
+
+    await CompleteTaskModel.get_motor_collection().drop()
+    await TaskModel.get_motor_collection().drop()
+    await UserModel.get_motor_collection().drop()
+
+
     """
     Initialize MongoDB and Beanie ODM
     """
