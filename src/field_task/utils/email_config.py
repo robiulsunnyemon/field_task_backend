@@ -27,5 +27,5 @@ async def send_otp(otp_user: SendOtpModel):
         port=587,
         start_tls=True,
         username="robiulsunyemon111@gmail.com",
-        password="moqv rses ciyf raiv",
+        password="lihc qwju fply fysw",
     )
