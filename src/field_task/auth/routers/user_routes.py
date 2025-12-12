@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException, Depends,status
 from typing import List
 
+from field_task.utils.user_info import get_user_info
+
 from field_task.auth.models.user_model import UserModel
 from field_task.auth.schemas.user_schemas import UserResponse, UserUpdate
 
@@ -23,6 +25,18 @@ async def get_user(id: str):
     """
     Get user by ID
     """
+    user = await UserModel.get(id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
+
+
+@user_router.get("/info/me", response_model=UserResponse,status_code=status.HTTP_200_OK)
+async def get_user(user_data:dict=Depends(get_user_info)):
+    """
+    Get user by ID
+    """
+    id=user_data["user_id"]
     user = await UserModel.get(id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
