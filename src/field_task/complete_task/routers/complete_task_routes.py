@@ -172,3 +172,21 @@ async def delete_complete_task(id: str):
 
     await complete_task.delete()
     return {"message": "CompleteTask deleted successfully"}
+
+
+# DELETE all complete_tasks
+@router.delete("/all", status_code=status.HTTP_200_OK)
+async def delete_all_complete_tasks():
+    """
+    Delete all complete_tasks from the database.
+    """
+
+    delete_result = await CompleteTaskModel.delete_all()
+
+
+    if delete_result.deleted_count == 0:
+        return {"message": "No complete tasks found to delete. The collection was already empty."}
+
+    return {
+        "message": f"Successfully deleted {delete_result.deleted_count} complete tasks."
+    }
