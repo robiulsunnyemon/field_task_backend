@@ -9,7 +9,7 @@ user_router = APIRouter(prefix="/users", tags=["Users"])
 
 # GET all users
 @user_router.get("/", response_model=List[UserResponse],status_code=status.HTTP_200_OK)
-async def get_all_users(skip: int = 0, limit: int = 20):
+async def get_all_users(skip: int = 0, limit: int = 200):
     """
     Get all users with pagination
     """

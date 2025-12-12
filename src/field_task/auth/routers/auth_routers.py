@@ -17,7 +17,7 @@ router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
 # POST create new user
-@router.post("/" ,response_model=UserResponse,status_code=status.HTTP_201_CREATED)
+@router.post("/signup" ,response_model=UserResponse,status_code=status.HTTP_201_CREATED)
 async def create_user(user: UserCreate):
     hashed_password = get_hashed_password(user.password)
     db_user = await UserModel.find_one(UserModel.email == user.email)
